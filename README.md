@@ -31,7 +31,7 @@ text
 ### Execution
 
 ./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1
-text
+text ( parameters can be changed as desired)
 
 
 ## 🎯 Simulation Parameters
