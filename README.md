@@ -1,6 +1,6 @@
 # 2D Amorphous System Simulation with Obstacle
 
-A C++ simulation of dense amorphous polydisperse systems in a confined geometry with a central obstacle. This research code investigates anisotropic parameter and non-affine displacements in dense amorphous systems.
+A C++ simulation of dense amorphous polydisperse systems in a confined geometry with a central obstacle. This research code investigates anisotropic parameter and non affine displacements in dense amorphous systems.
 
 ## 📋 Project Overview
 
@@ -57,7 +57,6 @@ text ( parameters can be changed as desired)
 ### 1. Steady State Detection
 
 python "analysis/Steady State Graph.py"
-text
 
 Detects when the system reaches steady state by monitoring energy, pressure, and stress over time.
 
@@ -65,37 +64,30 @@ Detects when the system reaches steady state by monitoring energy, pressure, and
 
 python "analysis/T1 Event and D2min, polydisperse neighbor list.py"
 python "analysis/Displacement vector.py"
-text
 
 Analyzes T1 events, D2min, and non-affine displacements between different time steps.
 
 ### 3. Data Generation
 
 python "analysis/Data Generator.py"
-text
 
 Generates processed data for further analysis from raw simulation outputs.
 
 ### 4. Anisotropy Analysis
 
 python "analysis/Average Anisotropic Parameter.py"
-text
 
-Studies anisotropy behavior (A) vs polydispersity (δ) at constant φ=1.2 and f_ext=0.0001.
+Studies anisotropy parameter (A) vs polydispersity (δ) at constant φ=1.2 and f_ext=0.0001.
 
 ### 5. Order Parameter Analysis
 
 python "analysis/Order Parameter Percentage Calculator.py"
-text
 
-Calculates order parameter percentages for:
-- Different forces at φ=1.2, δ=0.15 (polydisperse)
-- Different packing fractions at φ=0.9
+Calculates order parameter percentages for  different forces at φ=0.9,1.2, δ=0.15 (polydisperse)
 
 ### 6. Preliminary Scatter Analysis
 
 python "analysis/Scatter Plot.py"
-text
 
 Initial analysis of Δy vs Δx behavior before anisotropy studies.
 
@@ -103,7 +95,7 @@ Initial analysis of Δy vs Δx behavior before anisotropy studies.
 
 1. How does polydispersity (δ) affect anisotropic behavior in confined systems?
 2. What is the relationship between external force and structural order?
-3. How do non-affine displacements correlate with T1 events?
+3. How do non affine displacements correlate with T1 events?
 4. What is the effect of packing fraction on system ordering?
 
 ## 👤 Author
