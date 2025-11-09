@@ -1,188 +1,152 @@
-# 🧬 2D Amorphous System Simulation
+# Shear and Shuffle: 2D Polydisperse System Simulation with Obstacle
 
-This repository contains the complete numerical framework used to study the **flow of a 2D polydisperse amorphous system** in a rectangular channel with a central obstacle.  
-The simulation is implemented in **C++**, and the subsequent analysis and visualization are performed with **Python** scripts.  
-This work investigates steady-state dynamics, plastic rearrangements, anisotropy, and order parameters as a function of particle polydispersity and applied external force.
+A C++ simulation of dense amorphous polydisperse systems under shear in a confined geometry with a central obstacle. This research code investigates anisotropic behavior and non-affine displacements in complex fluids.
 
-This repository serves as the **research foundation** for the dataset and challenge published separately in:  
-👉 [**Shear and Shuffle Challenge**](https://github.com/mazloum-bahaa/ShearAndShuffle)
+## 📋 Project Overview
 
----
+This project simulates a 2D polydisperse system (dense amorphous material) confined in a rectangular channel with a central obstacle. The system undergoes shear deformation, and various analysis tools are provided to study:
+- Steady state detection
+- T1 events and non-affine displacements
+- Anisotropic behavior vs polydispersity
+- Order parameter analysis
 
-## 📖 Overview
+The simulation generates data for studying how polydispersity affects the mechanical response and structural rearrangements in dense systems.
 
-Amorphous materials such as foams, emulsions, or dense colloids exhibit complex flow behavior due to their disordered microstructure and the interplay between elastic and plastic responses.  
-Here, we simulate a **2D polydisperse soft-particle system** driven through a **rectangular channel** containing a **circular obstacle** at its center.
+## 🏗️ Repository Structure
 
-The model captures:
+ShearAndShuffle/
+├── src/ # Source code
+│ ├── Foam_Dollet_2D.cpp # Main simulation code
+│ ├── twister.h # Random number generator header
+│ └── twister.cpp # Random number generator implementation
+├── analysis/ # Python analysis scripts
+│ ├── Steady State Graph.py
+│ ├── T1 Event and D2min, polydisperse neighbor list.py
+│ ├── Displacement vector.py
+│ ├── Data Generator.py
+│ ├── Average Anisotropic Parameter.py
+│ ├── Order Parameter Percentage Calculator.py
+│ └── Scatter Plot.py
+├── data/ # Generated simulation data
+├── results/ # Analysis results and figures
+└── README.md
+text
 
-- The emergence of a steady state under constant external forcing.
-- The role of **polydispersity** on microscopic **anisotropy** and flow patterns.
-- The statistics of **T1 rearrangements** and **non-affine displacement (D²min)**.
-- The **transition** between flowing and arrested regimes.
 
----
+## ⚙️ Compilation and Execution
 
-## ⚙️ Simulation Code
+### Prerequisites
+- GCC compiler (g++)
+- Linux/Ubuntu environment
+- Python 3 with standard scientific stack (numpy, matplotlib)
 
-The simulation is implemented in **C++** using a Mersenne Twister random number generator for initialization.
+### Compilation
 
-### 📂 Source Files
-
-| File | Description |
-|------|--------------|
-| `Foam_Dollet_2D.cpp` | Main simulation code implementing particle dynamics. |
-| `twister.cpp`, `twister.h` | Mersenne Twister pseudorandom number generator. |
-
----
-
-## 🧮 Compilation and Execution
-
-### Compilation (Linux)
+bash
 g++ -c Foam_Dollet_2D.cpp
 g++ -c twister.cpp
 g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe
 
 Execution
+bash
 
-./Foam_Dollet_2D.exe \
-  -N 900 \
-  -phi 0.9 \
-  -delta 0.05 \
-  -gamma 3 \
-  -w 0.5 \
-  -sigm_obs 10 \
-  -K 10.0 \
-  -fx_ext 0.001 \
-  -dt 0.1 \
-  -trajectory 1 \
-  -total_step 100000 \
-  -output_step 100 \
-  -run 1
+./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1
 
-Parameter Description
-Parameter	Meaning	Example
+🎯 Simulation Parameters
+Parameter	Description	Typical Value
 -N	Number of particles	900
--phi	Area fraction (packing density). Higher than 1 means overlapping particles.	1.2
--delta	Standard deviation of the particle size distribution (polydispersity).	0.05
--gamma	Ratio of box lengths along x and y (Lx/Ly).	3
--w	Width of the walls confining the system.	0.5
--sigm_obs	Diameter of the central obstacle.	10
--K	Stiffness constant of walls and obstacle.	10.0
--fx_ext	External driving force along x.	0.001
--dt	Time step for the Euler method.	0.1
--trajectory	Output trajectory flag (1 = save).	1
--total_step	Total number of simulation iterations.	100000
--output_step	Frequency of trajectory outputs.	100
--run	Simulation ID for reproducibility.	1
-🧠 Post-Processing and Analysis
+-phi	Area packing fraction (1.2 = particles overlap)	0.9-1.2
+-delta	Standard deviation of particle size distribution (0.0 = monodisperse)	0.0-0.15
+-gamma	Ratio between linear box length along x and y	1.5-3
+-w	Width of the walls	0.5-1.0
+-sigm_obs	Diameter of the central obstacle	5.0-10.0
+-K	Magnitude of hardness for walls and obstacle	10.0
+-fx_ext	External force along x-direction	0.0001-0.005
+-dt	Step size for Euler integration method	0.1
+-trajectory	Flag to output trajectory data	1
+-total_step	Total number of simulation iterations	100000
+-output_step	Frequency of configuration output	100
+-run	Simulation ID for multiple runs	1
+🔬 Analysis Workflow
+1. Steady State Detection
+bash
 
-The simulation produces trajectory and observable data analyzed with dedicated Python scripts.
-Each script corresponds to a specific aspect of the study.
-Script	Description
-Steady_State_Graph.py	Determines the steady-state regime by analyzing energy, pressure, and stress versus time.
-T1_Event_and_D2min.py	Detects T1 rearrangements and computes local non-affine deformation parameter (D²min).
-Polydisperse_Neighbor_List.py	Builds neighbor lists that account for the size distribution of particles.
-Displacement_Vector.py	Visualizes displacement vectors to highlight regions of large deformation.
-Data_Generator.py	Generates datasets for the Shear and Shuffle Challenge
-.
-Average_Anisotropic_Parameter.py	Computes average anisotropy ⟨A⟩ versus polydispersity δ.
-Order_Parameter_Percentage_Calculator.py	Evaluates the fraction of flowing vs. arrested configurations at different forces.
-Scatter_Plot.py	Creates Δy vs. Δx scatter plots to visualize flow heterogeneity.
-📊 Example Studies
+python "analysis/Steady State Graph.py"
 
-    Steady-State Detection — Identify time regimes where energy and stress stabilize.
+Detects when the system reaches steady state by monitoring energy, pressure, and stress over time.
+2. Structural Analysis
+bash
 
-    Microscopic Rearrangements — Quantify T1 events and D²min distributions.
+python "analysis/T1 Event and D2min, polydisperse neighbor list.py"
+python "analysis/Displacement vector.py"
 
-    Anisotropy Analysis — Compute average anisotropy ⟨A⟩ vs. polydispersity δ.
+Analyzes T1 events, D2min, and non-affine displacements between different time steps.
+3. Data Generation
+bash
 
-    Order Parameter Analysis — Measure fraction of flowing vs arrested configurations under different forces.
+python "analysis/Data Generator.py"
 
-    Flow Field Visualization — Scatter plots of displacements reveal heterogeneous dynamics.
+Generates processed data for further analysis from raw simulation outputs.
+4. Anisotropy Analysis
+bash
 
-📁 Repository Structure
+python "analysis/Average Anisotropic Parameter.py"
 
-2D_Amorphous_System_Simulation/
-│
-├── src/
-│   ├── Foam_Dollet_2D.cpp
-│   ├── twister.cpp
-│   └── twister.h
-│
-├── python_scripts/
-│   ├── Steady_State_Graph.py
-│   ├── T1_Event_and_D2min.py
-│   ├── Polydisperse_Neighbor_List.py
-│   ├── Displacement_Vector.py
-│   ├── Data_Generator.py
-│   ├── Average_Anisotropic_Parameter.py
-│   ├── Order_Parameter_Percentage_Calculator.py
-│   └── Scatter_Plot.py
-│
-├── data/                # Example outputs
-├── results/             # Example figures
-└── README.md
+Studies anisotropy behavior (A) vs polydispersity (δ) at constant φ=1.2 and f_ext=0.0001.
+5. Order Parameter Analysis
+bash
 
-🧰 Dependencies
-Simulation
+python "analysis/Order Parameter Percentage Calculator.py"
 
-    g++ compiler
+Calculates order parameter percentages for:
 
-    Standard C++ libraries
+    Different forces at φ=1.2, δ=0.15 (polydisperse)
 
-Python Analysis
+    Different packing fractions at φ=0.9
 
-pip install numpy scipy matplotlib pandas
+6. Preliminary Scatter Analysis
+bash
 
-Optional (for visualization):
+python "analysis/Scatter Plot.py"
 
-pip install ovito seaborn
+Initial analysis of Δy vs Δx behavior before anisotropy studies.
+📊 Key Research Questions
 
-📈 Example Outputs
+    How does polydispersity (δ) affect anisotropic behavior in confined systems?
 
-    Energy and stress plots showing steady-state behavior
+    What is the relationship between external force and structural order?
 
-    D²min maps highlighting non-affine rearrangements
+    How do non-affine displacements correlate with T1 events?
 
-    Anisotropy vs. polydispersity trends
+    What is the effect of packing fraction on system ordering?
 
-    Order parameter vs. driving force phase diagrams
+🤝 Contributing
 
-    Scatter plots showing Δy vs. Δx displacements
+This is a research codebase. For questions about the methodology or collaboration opportunities, please contact the maintainer.
+📝 Citation
 
-🔗 Related Work
+If you use this code in your research, please acknowledge the original work.
+👤 Author
 
-The dataset generated here is used in the companion challenge:
-📂 Shear and Shuffle Challenge
-🧾 Citation
+Bahaa Mazloum
 
-If you use this repository or dataset, please cite:
+    GitHub: @mazloum-bahaa
 
-    Your Name, “2D Amorphous System Simulation”, 2025.
-    GitHub Repository: https://github.com/YourUsername/2D_Amorphous_System_Simulation
+For detailed questions about the physics or methodology, please refer to the associated research publications or contact the author directly.
+text
 
-👩‍🔬 Author
 
-Your Name
-Université Grenoble Alpes — Laboratoire Interdisciplinaire de Physique (LiPhy)
-📧 your.email@domain.com
+## Next Steps for Your Repository:
 
----
+1. **Create the folder structure** I showed above
+2. **Organize your files** into the appropriate folders:
+   - Move C++ files to `src/`
+   - Move Python scripts to `analysis/`
+   - Create `data/` and `results/` folders
+3. **Add your actual code files** to the repository
+4. **Consider adding**:
+   - A `requirements.txt` for Python dependencies
+   - Example input/output files
+   - Any relevant research papers
 
-✅ **Instructions to add this properly:**
-1. Go to your repository on GitHub.  
-2. Click **“Add file → Create new file”**.  
-3. Name it exactly: `README.md`.  
-4. Paste **everything** from the code block above.  
-5. Commit.  
-
-When you view the repo, you’ll see:  
-- The headings properly formatted (`#`, `##` etc.).  
-- Tables nicely aligned.  
-- Code blocks for bash commands.  
-- Lists and bold text all rendered cleanly.
-
----
-
-Would you like me to insert your **real name, email, and GitHub link** into the last section and citation before you upload it? That way it’s publication-ready.
+This README provides a clear, professional structure that will help others understand and potentially build upon your research. Would you like me to modify any section or add more specific details about any part of the analysis?
