@@ -12,24 +12,19 @@ This project simulates a 2D polydisperse system (dense amorphous material) confi
 
 The simulation generates data for studying how polydispersity, packing factor and many other parameters affects the dynamics and structural rearrangements in dense systems.
 
-## ⚙️ Compilation and Execution
+## 🧮 Compilation and Execution
 
-### Prerequisites
-- GCC compiler (g++)
-- Linux/Ubuntu environment
-- Python 3 with standard scientific stack (numpy, matplotlib)
-
-### Compilation 
+### Compilation (Linux)
 ```bash
 g++ -c Foam_Dollet_2D.cpp
 g++ -c twister.cpp
-g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe ```**
-
+g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe
 
 Execution
-```bash
 
-./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1 (parameters can be changed and tuned as desired) ```**
+./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1
+
+(parameters can be changed and tuned as desired)
 
 🎯 Simulation Parameters
 
@@ -52,41 +47,34 @@ Execution
 🔬 Analysis Workflow
 1. Steady State Detection
 
-bash
-
 python "analysis/Steady State Graph.py"
 
 Detects when the system reaches steady state by monitoring energy, pressure, and stress over time.
 2. Structural Analysis
-bash
 
 python "analysis/T1 Event and D2min, polydisperse neighbor list.py"
 python "analysis/Displacement vector.py"
 
-Analyzes T1 events, D2min, and non-affine displacements between different time steps.
+Analyzes T1 events, D²min, and non-affine displacements between different time steps.
 3. Data Generation
-bash
 
 python "analysis/Data Generator.py"
 
 Generates processed data for further analysis from raw simulation outputs.
 4. Anisotropy Analysis
-bash
 
 python "analysis/Average Anisotropic Parameter.py"
 
 Studies anisotropy behavior (A) vs polydispersity (δ) at constant φ=1.2 and f_ext=0.0001.
 5. Order Parameter Analysis
-bash
 
 python "analysis/Order Parameter Percentage Calculator.py"
 
 Calculates order parameter percentages for:
 
-    Different forces at φ=0.9,1.2, δ=0.15 (polydisperse)
+    Different forces at φ=0.9, 1.2, δ=0.15 (polydisperse)
 
 6. Preliminary Scatter Analysis
-bash
 
 python "analysis/Scatter Plot.py"
 
@@ -110,10 +98,6 @@ If you use this code in your research, please acknowledge the original work.
 👤 Author
 
 Bahaa Mazloum
+GitHub: @mazloum-bahaa
 
-    GitHub: @mazloum-bahaa
-
-For detailed questions about the physics or methodology, please  contact the author directly.
-
-
-This README provides a clear, professional structure that will help others understand and potentially build upon your research. Would you like me to modify any section or add more specific details about any part of the analysis?
+For detailed questions about the physics or methodology, contact the author directly.
