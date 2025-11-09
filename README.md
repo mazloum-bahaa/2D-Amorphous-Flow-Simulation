@@ -1,37 +1,16 @@
-# Shear and Shuffle: 2D Polydisperse System Simulation with Obstacle
+# 2D Amorphous System Simulation with Obstacle
 
-A C++ simulation of dense amorphous polydisperse systems under shear in a confined geometry with a central obstacle. This research code investigates anisotropic behavior and non-affine displacements in complex fluids.
+A C++ simulation of dense amorphous polydisperse systems in a confined geometry with a central obstacle. This research code investigates anisotropic parameter and non-affine displacements in dense amorphous systems.
 
 ## 📋 Project Overview
 
-This project simulates a 2D polydisperse system (dense amorphous material) confined in a rectangular channel with a central obstacle. The system undergoes shear deformation, and various analysis tools are provided to study:
+This project simulates a 2D polydisperse system (dense amorphous material) confined in a rectangular channel with a central obstacle. The system undergoes non affine deformation, and various analysis tools are provided to study:
 - Steady state detection
 - T1 events and non-affine displacements
 - Anisotropic behavior vs polydispersity
 - Order parameter analysis
 
-The simulation generates data for studying how polydispersity affects the mechanical response and structural rearrangements in dense systems.
-
-## 🏗️ Repository Structure
-
-ShearAndShuffle/
-├── src/ # Source code
-│ ├── Foam_Dollet_2D.cpp # Main simulation code
-│ ├── twister.h # Random number generator header
-│ └── twister.cpp # Random number generator implementation
-├── analysis/ # Python analysis scripts
-│ ├── Steady State Graph.py
-│ ├── T1 Event and D2min, polydisperse neighbor list.py
-│ ├── Displacement vector.py
-│ ├── Data Generator.py
-│ ├── Average Anisotropic Parameter.py
-│ ├── Order Parameter Percentage Calculator.py
-│ └── Scatter Plot.py
-├── data/ # Generated simulation data
-├── results/ # Analysis results and figures
-└── README.md
-text
-
+The simulation generates data for studying how polydispersity, packing factor and many other parameters affects the dynamics and structural rearrangements in dense systems.
 
 ## ⚙️ Compilation and Execution
 
@@ -50,7 +29,7 @@ g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe
 Execution
 bash
 
-./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1
+./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1 (parameters can be changed and tuned as desired)
 
 🎯 Simulation Parameters
 Parameter	Description	Typical Value
@@ -69,6 +48,7 @@ Parameter	Description	Typical Value
 -run	Simulation ID for multiple runs	1
 🔬 Analysis Workflow
 1. Steady State Detection
+
 bash
 
 python "analysis/Steady State Graph.py"
@@ -100,9 +80,7 @@ python "analysis/Order Parameter Percentage Calculator.py"
 
 Calculates order parameter percentages for:
 
-    Different forces at φ=1.2, δ=0.15 (polydisperse)
-
-    Different packing fractions at φ=0.9
+    Different forces at φ=0.9,1.2, δ=0.15 (polydisperse)
 
 6. Preliminary Scatter Analysis
 bash
@@ -112,7 +90,7 @@ python "analysis/Scatter Plot.py"
 Initial analysis of Δy vs Δx behavior before anisotropy studies.
 📊 Key Research Questions
 
-    How does polydispersity (δ) affect anisotropic behavior in confined systems?
+    How does polydispersity (δ) affect anisotropic parameter in confined systems?
 
     What is the relationship between external force and structural order?
 
@@ -132,21 +110,7 @@ Bahaa Mazloum
 
     GitHub: @mazloum-bahaa
 
-For detailed questions about the physics or methodology, please refer to the associated research publications or contact the author directly.
-text
+For detailed questions about the physics or methodology, please  contact the author directly.
 
-
-## Next Steps for Your Repository:
-
-1. **Create the folder structure** I showed above
-2. **Organize your files** into the appropriate folders:
-   - Move C++ files to `src/`
-   - Move Python scripts to `analysis/`
-   - Create `data/` and `results/` folders
-3. **Add your actual code files** to the repository
-4. **Consider adding**:
-   - A `requirements.txt` for Python dependencies
-   - Example input/output files
-   - Any relevant research papers
 
 This README provides a clear, professional structure that will help others understand and potentially build upon your research. Would you like me to modify any section or add more specific details about any part of the analysis?
