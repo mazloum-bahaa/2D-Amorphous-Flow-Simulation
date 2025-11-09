@@ -19,33 +19,36 @@ The simulation generates data for studying how polydispersity, packing factor an
 - Linux/Ubuntu environment
 - Python 3 with standard scientific stack (numpy, matplotlib)
 
-### Compilation
-
-bash
+### Compilation 
+```bash
 g++ -c Foam_Dollet_2D.cpp
 g++ -c twister.cpp
-g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe
+g++ Foam_Dollet_2D.o twister.o -o Foam_Dollet_2D.exe ```**
+
 
 Execution
-bash
+```bash
 
-./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1 (parameters can be changed and tuned as desired)
+./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1 (parameters can be changed and tuned as desired) ```**
 
 🎯 Simulation Parameters
-Parameter	Description	Typical Value
--N	Number of particles	900
--phi	Area packing fraction (1.2 = particles overlap)	0.9-1.2
--delta	Standard deviation of particle size distribution (0.0 = monodisperse)	0.0-0.15
--gamma	Ratio between linear box length along x and y	1.5-3
--w	Width of the walls	0.5-1.0
--sigm_obs	Diameter of the central obstacle	5.0-10.0
--K	Magnitude of hardness for walls and obstacle	10.0
--fx_ext	External force along x-direction	0.0001-0.005
--dt	Step size for Euler integration method	0.1
--trajectory	Flag to output trajectory data	1
--total_step	Total number of simulation iterations	100000
--output_step	Frequency of configuration output	100
--run	Simulation ID for multiple runs	1
+
+| Parameter      | Description                                                           | Typical Value |
+| -------------- | --------------------------------------------------------------------- | ------------- |
+| `-N`           | Number of particles                                                   | 900           |
+| `-phi`         | Area packing fraction (1.2 = particles overlap)                       | 0.9–1.2       |
+| `-delta`       | Standard deviation of particle size distribution (0.0 = monodisperse) | 0.0–0.15      |
+| `-gamma`       | Ratio between box lengths along x and y                               | 1.5–3         |
+| `-w`           | Width of the walls                                                    | 0.5–1.0       |
+| `-sigm_obs`    | Diameter of the central obstacle                                      | 5.0–10.0      |
+| `-K`           | Stiffness of walls and obstacle                                       | 10.0          |
+| `-fx_ext`      | External force along x-direction                                      | 0.0001–0.005  |
+| `-dt`          | Step size for Euler integration                                       | 0.1           |
+| `-trajectory`  | Flag to output trajectory data                                        | 1             |
+| `-total_step`  | Total number of simulation iterations                                 | 100000        |
+| `-output_step` | Frequency of configuration output                                     | 100           |
+| `-run`         | Simulation ID for multiple runs                                       | 1             |
+
 🔬 Analysis Workflow
 1. Steady State Detection
 
