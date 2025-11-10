@@ -12,7 +12,7 @@ pressure = data[:, 2]      # Third column: Pressure
 shear_stress = data[:, 3]  # Fourth column: Shear Stress
 
 # Limit data to time between 0 and 100
-mask = (time >= 0) & (time <= 500)
+mask = (time >= 0) & (time <= 100)
 time = time[mask]
 energy = energy[mask]
 pressure = pressure[mask]
