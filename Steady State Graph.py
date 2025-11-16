@@ -1,3 +1,17 @@
+"""
+This script analyzes time-series output from the simulation to visualize
+Energy, Pressure, and Shear Stress over time, and to detect the steady state 
+time when both Energy and Pressure stabilize.
+
+The script performs the following steps:
+
+- Loads data from a text file containing columns: time, energy, pressure, shear stress.
+- Plots Energy, Pressure, and Shear Stress as separate subplots versus time.
+- Implements a function to detect steady state based on the standard deviation
+  in a rolling window falling below a defined threshold.
+- Prints the detected steady state time if found.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
