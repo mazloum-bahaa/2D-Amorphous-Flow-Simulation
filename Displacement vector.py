@@ -1,3 +1,16 @@
+"""
+This script visualizes particle displacements between two snapshots from a simulation.
+It performs the following steps:
+
+- Loads the initial and final particle positions from two data files.
+- Reads the box dimensions (Lx, Ly) from the first row of the files.
+- Computes particle displacements (dx, dy), accounting for periodic boundary
+  conditions using the minimum image convention.
+- Plots the displacement vectors as arrows using a quiver plot.
+- Formats the plot with equal aspect ratio, axis labels, grid, and limits
+  corresponding to the simulation box.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
