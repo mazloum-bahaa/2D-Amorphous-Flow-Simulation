@@ -15,11 +15,6 @@ The simulation generates data for studying how polydispersity, packing factor an
 
 ## ⚙️ Compilation and Execution
 
-### Prerequisites
-- GCC compiler (g++)
-- Linux/Ubuntu environment
-- Python 3 with standard scientific stack (numpy, matplotlib)
-
 ### Compilation
 
 g++ -c Foam_Dollet_2D.cpp
