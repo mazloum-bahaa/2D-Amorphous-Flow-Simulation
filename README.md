@@ -6,7 +6,7 @@ A C++ simulation of dense amorphous polydisperse systems in a confined geometry 
 
 This project simulates a 2D polydisperse system (dense amorphous material) confined in a rectangular channel with a central obstacle. The system undergoes non affine deformation, and various analysis tools are provided to study:
 - Steady state detection
-- T1 events and non-affine displacements
+- Local rearrangements and non-affine displacements
 - Anisotropic behavior vs polydispersity
 - Order parameter analysis
 
