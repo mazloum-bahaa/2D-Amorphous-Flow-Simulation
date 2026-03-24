@@ -90,10 +90,10 @@ Initial analysis of Δy vs Δx behavior before anisotropy studies.
 
 1. How does polydispersity (δ) affect anisotropic behavior in confined systems?
 2. What is the relationship between external force and structural order?
-3. How do non affine displacements correlate with T1 events?
+3. How do non affine displacements correlate with local rearrangements?
 4. What is the effect of packing fraction on system ordering?
 
 ## 👤 Author
 
-**Bahaa Mazloum**
+**Bahaa Mazloum**, **Alexandre Stepanetz**, **Benjamin Dollet**, **Misaki Ozawa**
 - GitHub: [@mazloum-bahaa](https://github.com/mazloum-bahaa)
