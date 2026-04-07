@@ -28,6 +28,39 @@ text
 ./Foam_Dollet_2D.exe -N 900 -phi 0.9 -delta 0.05 -gamma 3 -w 0.5 -sigm_obs 10 -K 10.0 -fx_ext 0.001 -dt 0.1 -trajectory 1 -total_step 100000 -output_step 100 -run 1
 text ( parameters can be changed as desired)
 
+📂 Output Files
+
+After running the simulation, all generated data are stored in a single output file named according to the simulation parameters:
+
+trajectory_total_step100000_output_step100_run1
+
+The filename reflects the values of:
+
+total_step
+output_step
+run
+
+🔧 Post-processing
+
+To make the data easier to analyze and visualize, you can split this large trajectory file into individual frames using the provided script:
+
+script_ovito_N900.sh
+
+Run it in the terminal with:
+
+sh script_ovito_N900.sh
+
+This will generate a sequence of files:
+
+data_0000
+data_0001
+...
+data_9999
+
+The total number of output files depends on the simulation parameters (mainly total_step and output_step).
+
+These files can then be directly loaded into OVITO for visualization and analysis.
+
 
 ## 🎯 Simulation Parameters
 
